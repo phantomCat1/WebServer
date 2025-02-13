@@ -4,8 +4,10 @@
 #include<string.h>
 #include<unistd.h>
 #include<sys/types.h>
-
-
+#include<pthread.h>
+void main(int argc, char* argv[]){
+    printf("hello\n");
+}
 // Create listening socket using UNIX socket interface
 // bind socket
 // listen
