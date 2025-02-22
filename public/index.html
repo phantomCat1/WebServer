@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Matrix Background</title>
+  <style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: black;
+    }
+    canvas {
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="matrixCanvas"></canvas>
+  <img src="Matrix-scaled.jpg" alt="Neo from the Matrix">
+  <script>
+    const canvas = document.getElementById('matrixCanvas');
+    const context = canvas.getContext('2d');
+
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const matrixCharacters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%^&*';
+    const fontSize = 16;
+    const columns = canvas.width / fontSize;
+    const drops = Array(Math.floor(columns)).fill(0);
+
+    function drawMatrix() {
+      context.fillStyle = 'rgba(0, 0, 0, 0.05)';
+      context.fillRect(0, 0, canvas.width, canvas.height);
+
+      context.fillStyle = '#0f0';
+      context.font = `${fontSize}px monospace`;
+
+      drops.forEach((y, i) => {
+        const text = matrixCharacters.charAt(Math.floor(Math.random() * matrixCharacters.length));
+        const x = i * fontSize;
+
+        context.fillText(text, x, y * fontSize);
+
+        if (y * fontSize > canvas.height && Math.random() > 0.975) {
+          drops[i] = 0;
+        } else {
+          drops[i]++;
+        }
+      });
+    }
+
+    setInterval(drawMatrix, 50);
+  </script>
+</body>
+</html>
