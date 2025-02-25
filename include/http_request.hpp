@@ -13,6 +13,7 @@ class HTTP_Request{
     std::string path;
     std::string method;
     std::unordered_map<std::string,std::string> headers;
+    std::unordered_map<std::string,std::string> query_param;
     std::string body;
     
 };

@@ -8,7 +8,8 @@ void HTTP_Request::parse(const std::string& raw_request){
 
     std::getline(stream, line);                 // get first line, i.e. request line of http 
     std::istringstream request_line(line);      // convert regular request line string to a stream
-    request_line >> this->method >> this->path >> this->http_version;       // separate into method, path and version
+    std::string path_with_param;
+    request_line >> this->method >> path_with_param >> this->http_version;       // separate into method, path and version
 
     // Parsing headers
     // Guard ensures we read each header value and makes sure we are not in the crlf before the body
@@ -28,6 +29,19 @@ void HTTP_Request::parse(const std::string& raw_request){
         bodyStream << line;
     }
     this->body = bodyStream.str();
+
+    // Parse query parameters which we will ignore
+    std::istringstream path_stream(path_with_param);
+    std::getline(path_stream, this->path, '?');         // Extract path to resource
+    std::string pair;                                   // Used to store each parameter, value pair
+    while(std::getline(path_stream, pair, '&')){        // Read until no more parameters are found
+        size_t pos_equal = pair.find('=');              // Find delimiting = char between the param and value
+        if(pos_equal != std::string::npos){             // Checks that there is some value after =
+            std::string key = pair.substr(0,pos_equal);
+            std::string value = pair.substr(pos_equal+1);
+            this->query_param[key] = value;
+        }
+    }
 }
 
 HTTP_Response::HTTP_Response(int code, std::string http_version): http_version(http_version){
@@ -40,7 +54,8 @@ HTTP_Response::HTTP_Response(int code, std::string http_version): http_version(h
     }
     headers["Content-Type"] = "text/html";
     headers["Connection"] = "close";
-    body = "<html><body><h1>Hello, World!</h1></body></html>";
+    //content length header
+    
 }
 
 std::string HTTP_Response::to_string() const{
