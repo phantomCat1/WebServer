@@ -30,8 +30,7 @@ void HTTP_Request::parse(const std::string& raw_request){
     this->body = bodyStream.str();
 }
 
-std::string HTTP_Response::generateResponseCode(int code) {
-    std::string response_code;
+HTTP_Response::HTTP_Response(int code, std::string http_version): http_version(http_version){
     switch(code){
         case 200: response_code = "200 OK"; break;
         case 400: response_code = "400 Bad Request"; break;
@@ -39,9 +38,19 @@ std::string HTTP_Response::generateResponseCode(int code) {
         case 500: response_code = "500 Internal Error"; break;
         case 501: response_code = "501 Not Implemented"; break;
     }
-    return response_code;
+    headers["Content-Type"] = "text/html";
+    headers["Connection"] = "close";
+    body = "<html><body><h1>Hello, World!</h1></body></html>";
 }
 
-void HTTP_Response::handlePath(std::string path){
-    
+std::string HTTP_Response::to_string() const{
+    std::ostringstream response_stream;
+    response_stream << http_version << " " << response_code << "\r\n";
+    for(const auto& header: headers){
+        response_stream << header.first << ": "<< header.second <<"\r\n";
+    }
+    response_stream<<"\r\n"<<body;
+    return response_stream.str();
+
 }
+

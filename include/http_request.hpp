@@ -19,14 +19,12 @@ class HTTP_Request{
 
 class HTTP_Response{
     public:
-    HTTP_Response()=default;
+    HTTP_Response(int code, std::string http_version);
     ~HTTP_Response()=default;
-    std::string generateResponse(HTTP_Request http_request);
+    std::string to_string() const;
     std::string http_version;
     std::string response_code;
     std::unordered_map<std::string,std::string> headers;
     std::string body;
-    std::string generateResponseCode(int code);
-    void handlePath(std::string path);
 };
 #endif //HTTP_REQ
