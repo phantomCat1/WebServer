@@ -44,16 +44,8 @@ void HTTP_Request::parse(const std::string& raw_request){
     }
 }
 
-HTTP_Response::HTTP_Response(int code, std::string http_version): http_version(http_version){
-    switch(code){
-        case 200: response_code = "200 OK"; break;
-        case 400: response_code = "400 Bad Request"; break;
-        case 404: response_code = "404 Not Found"; break;
-        case 500: response_code = "500 Internal Error"; break;
-        case 501: response_code = "501 Not Implemented"; break;
-    }
-    headers["Content-Type"] = "text/html";
-    headers["Connection"] = "close";
+HTTP_Response::HTTP_Response(){
+    http_version = "HTTP/1.0";
     //content length header
     
 }

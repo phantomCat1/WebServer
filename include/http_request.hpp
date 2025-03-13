@@ -20,7 +20,7 @@ class HTTP_Request{
 
 class HTTP_Response{
     public:
-    HTTP_Response(int code, std::string http_version);
+    HTTP_Response();
     ~HTTP_Response()=default;
     std::string to_string() const;
     std::string http_version;
