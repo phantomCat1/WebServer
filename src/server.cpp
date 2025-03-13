@@ -50,7 +50,7 @@ void HTTP_Server::handleClient(int client_socket){
         HTTP_Request http_request;
         http_request.parse(request_str);
 
-        HTTP_Response http_response(200, http_request.http_version);
+        HTTP_Response http_response;
         std::string response_str = http_response.to_string();
         send(client_socket, response_str.c_str(), response_str.size(), 0);
 

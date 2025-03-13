@@ -8,6 +8,7 @@ add_executable(http_server
 src/main.cpp
 src/request_handler.cpp
 src/server.cpp
-src/http_request.cpp)
+src/http_request.cpp
+src/router.cpp)
 
 target_link_libraries(http_server pthread)
