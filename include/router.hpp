@@ -1,3 +1,6 @@
+#ifndef ROUTER
+#define ROUTER
+
 #include<string>
 #include"http_request.hpp"
 
@@ -9,3 +12,4 @@ class Router{
     std::string getResponseCode(int code);
     HTTP_Response getResource(const std::string& path, const std::string& type);
 };
+#endif

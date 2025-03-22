@@ -6,7 +6,7 @@
 
 class HTTP_Request{
     public:
-    HTTP_Request()=default;
+    HTTP_Request(): http_version("HTTP/1.0"){};
     ~HTTP_Request()=default;
     void parse(const std::string& raw_request);
     std::string http_version;

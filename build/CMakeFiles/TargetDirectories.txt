@@ -1,3 +1,0 @@
-/home/marian/cpp_projects/WebServer/build/CMakeFiles/http_server.dir
-/home/marian/cpp_projects/WebServer/build/CMakeFiles/edit_cache.dir
-/home/marian/cpp_projects/WebServer/build/CMakeFiles/rebuild_cache.dir

@@ -44,12 +44,7 @@ void HTTP_Request::parse(const std::string& raw_request){
     }
 }
 
-HTTP_Response::HTTP_Response(){
-    http_version = "HTTP/1.0";
-    //content length header
-    
-}
-
+HTTP_Response:: HTTP_Response(){}
 std::string HTTP_Response::to_string() const{
     std::ostringstream response_stream;
     response_stream << http_version << " " << response_code << "\r\n";

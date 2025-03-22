@@ -15,12 +15,21 @@
       position: absolute;
       top: 0;
       left: 0;
+      z-index: 0;
+    }
+    img {
+      position: relative;
+      z-index: 1;
+      display: block;
+      margin: 0 auto; 
+      max-width: 80%; 
+      padding-top: 20px; 
     }
   </style>
 </head>
 <body>
   <canvas id="matrixCanvas"></canvas>
-  <img src="../static/image/Matrix-scaled.jpg" alt="Neo from the Matrix">
+  <img src="static/image/Matrix-scaled.jpg" alt="Neo from the Matrix">
   <script>
     const canvas = document.getElementById('matrixCanvas');
     const context = canvas.getContext('2d');
