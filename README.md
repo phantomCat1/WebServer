@@ -1,7 +1,3 @@
-Certainly! Here's a more polished and professional version of your `README.md` file:
-
----
-
 # WebServer
 
 A simple web server implementing the HTTP protocol, built primarily for learning purposes.
